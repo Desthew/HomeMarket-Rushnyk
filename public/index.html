@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Рукавиця-рушник для собак і котів — 329 грн</title>
+  <meta name="description" content="Висушіть улюбленця за 3 хвилини. Акція: 329 грн (було 500). На складі 54 шт." />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Можно убрать google fonts если не хочешь внешние ресурсы -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Manrope:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar" id="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#top">
+        <span class="brand__logo" aria-hidden="true">🐾</span>
+        <span class="brand__text">HomeMarket • PetCare</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#benefits">Переваги</a>
+        <a href="#reviews">Відгуки</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <a class="btn btn--primary" href="#order">Замовити за 329 грн</a>
+    </div>
+
+    <div class="topbar__strip">
+      <div class="container strip__inner">
+        <div class="strip__item">
+          <span class="dot dot--ping"></span>
+          <span>На складі: <b id="stockTop">54</b> шт</span>
+        </div>
+        <div class="strip__item">
+          ⏳ До кінця акції: <b id="timerTop">--:--:--</b>
+        </div>
+        <div class="strip__item">
+          👀 Зараз переглядають: <b id="viewersTop">—</b>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating CTA (mobile/scroll) -->
+  <a class="floating-cta" href="#order" aria-label="Замовити">
+    Замовити • <span class="floating-cta__price">329 грн</span>
+  </a>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__left">
+          <div class="kicker reveal">
+            <span class="badge badge--sale">🔥 Акція -34%</span>
+            <span class="pill">
+              <span class="dot dot--ping"></span>
+              Залишилось: <b id="stockHero">54</b> шт
+            </span>
+            <span class="pill">🚚 Доставка 1–3 дні</span>
+          </div>
+
+          <h1 class="h1 reveal" style="--d:80ms">
+            Висушіть улюбленця за 3 хвилини — без калюж і шерсті
+          </h1>
+
+          <p class="lead reveal" style="--d:140ms">
+            Мікрофіброва рукавиця-рушник: м’яка, зручна, супер-вбираюча.
+            Ідеально після прогулянки в дощ або купання.
+          </p>
+
+          <div class="price reveal" style="--d:200ms">
+            <div class="price__old">500 грн</div>
+            <div class="price__new">329 грн</div>
+            <div class="price__meta">
+              <span class="chip">⏳ Акція обмежена</span>
+              <span class="chip">🔒 Оплата при отриманні</span>
+              <span class="chip">✅ 14 днів повернення</span>
+            </div>
+          </div>
+
+          <div class="cta reveal" style="--d:260ms">
+            <a class="btn btn--primary btn--lg" href="#order">Замовити зараз</a>
+            <a class="btn btn--ghost btn--lg" href="#how">Дивитись як працює</a>
+          </div>
+
+          <div class="trust reveal" style="--d:320ms">
+            <div class="trust__item">🏠 Чисто вдома</div>
+            <div class="trust__item">🐾 Для собак і котів</div>
+            <div class="trust__item">🧼 Легко прати</div>
+          </div>
+        </div>
+
+        <div class="hero__right reveal" style="--d:120ms">
+          <div class="mediaCard">
+            <div class="mediaCard__imgWrap">
+              <img class="float" src="./assets/dog-hero.jpg" alt="Пес у рушнику" />
+              <div class="glow" aria-hidden="true"></div>
+            </div>
+            <div class="mediaCard__row">
+              <img src="./assets/product-1.jpg" alt="Рукавиця-рушник" />
+              <img src="./assets/product-2.jpg" alt="Фактура мікрофібри" />
+            </div>
+
+            <div class="miniSpecs">
+              <div class="miniSpecs__item">💧 Супер-вбирання</div>
+              <div class="miniSpecs__item">📏 62×23 см</div>
+              <div class="miniSpecs__item">🪝 Петля</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live proof toast -->
+      <div class="social-toast" id="socialToast" aria-live="polite"></div>
+    </section>
+
+    <!-- BENEFITS (4) -->
+    <section id="benefits" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Чому це купують</h2>
+        <p class="section__sub reveal" style="--d:80ms">
+          Ми продаємо не “рушник”, а <b>швидкість</b> і <b>чистоту</b> після прогулянок.
+        </p>
+
+        <div class="grid grid--4">
+          <article class="card reveal">
+            <div class="icon">🧼</div>
+            <h3>Миттєво вбирає вологу</h3>
+            <p>Щільна мікрофібра забирає воду з першого проходу.</p>
+          </article>
+          <article class="card reveal" style="--d:60ms">
+            <div class="icon">🐕</div>
+            <h3>Комфорт для тварини</h3>
+            <p>М’яка текстура — без стресу та подразнень.</p>
+          </article>
+          <article class="card reveal" style="--d:120ms">
+            <div class="icon">🖐</div>
+            <h3>Не зісковзує з руки</h3>
+            <p>Форма рукавиці дає контроль і не ковзає.</p>
+          </article>
+          <article class="card reveal" style="--d:180ms">
+            <div class="icon">🏠</div>
+            <h3>Чистота в домі</h3>
+            <p>Менше мокрих слідів і шерсті по квартирі.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Як працює</h2>
+        <p class="section__sub reveal" style="--d:80ms">
+          3 кроки — і улюбленець сухий. Економить до 10 хвилин після кожної прогулянки.
+        </p>
+
+        <div class="how">
+          <div class="how__left reveal">
+            <div class="howCard">
+              <div class="howCard__top">
+                <div class="badge badge--mint">⏱ 3 хвилини</div>
+                <div class="badge badge--soft">Без калюж</div>
+              </div>
+              <ul class="bullets">
+                <li>Двостороння мікрофібра</li>
+                <li>Посилені краї</li>
+                <li>Петля для зберігання</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="how__right">
+            <div class="step reveal">
+              <span class="step__num">1</span>
+              <div>
+                <b>Одягніть рукавицю</b>
+                <span>Тримається як варежка — зручно навіть однією рукою.</span>
+              </div>
+            </div>
+            <div class="step reveal" style="--d:60ms">
+              <span class="step__num">2</span>
+              <div>
+                <b>Протріть шерсть або лапи</b>
+                <span>Ворсинки забирають вологу і бруд, не травмуючи шкіру.</span>
+              </div>
+            </div>
+            <div class="step reveal" style="--d:120ms">
+              <span class="step__num">3</span>
+              <div>
+                <b>Готово — чисто вдома</b>
+                <span>Менше калюж, менше запаху, менше шерсті.</span>
+              </div>
+            </div>
+
+            <div class="promo reveal" style="--d:160ms">
+              <div>
+                <div class="promo__title">Забирайте по акції сьогодні</div>
+                <div class="promo__meta">
+                  <span class="dot dot--ping"></span>
+                  Залишилось: <b id="stockPromo">54</b> шт •
+                  До кінця: <b id="timerPromo">--:--:--</b>
+                </div>
+              </div>
+              <a class="btn btn--primary" href="#order">Забрати за 329</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <h2 class="section__title reveal">Відгуки покупців</h2>
+            <p class="section__sub reveal" style="--d:80ms">Коротко, по суті, тільки те, що читають.</p>
+          </div>
+          <div class="rating reveal" style="--d:140ms">
+            <div class="rating__big">4.9</div>
+            <div class="rating__small">★★★★★<br><span>на основі відгуків</span></div>
+          </div>
+        </div>
+
+        <div class="reviews reveal" style="--d:120ms">
+          <div class="reviews__track" id="reviewsTrack">
+            <!-- duplicated in JS for endless -->
+            <article class="review">
+              <div class="review__head">
+                <span class="avatar">А</span>
+                <div>
+                  <b>Анна, Львів</b>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+              <p>Після дощу — мастхев. Собака суха за кілька хвилин, підлога чиста.</p>
+            </article>
+
+            <article class="review">
+              <div class="review__head">
+                <span class="avatar">О</span>
+                <div>
+                  <b>Олег, Київ</b>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+              <p>Дуже м’яка. Пес не виривається як з звичайним рушником.</p>
+            </article>
+
+            <article class="review">
+              <div class="review__head">
+                <span class="avatar">І</span>
+                <div>
+                  <b>Ірина, Дніпро</b>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+              <p>Купила другу — одну тримаю в авто. Зручно й швидко.</p>
+            </article>
+
+            <article class="review">
+              <div class="review__head">
+                <span class="avatar">М</span>
+                <div>
+                  <b>Марина, Одеса</b>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+              <p>Підходить і для кота — лапи витираю моментально.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">FAQ</h2>
+        <p class="section__sub reveal" style="--d:80ms">Знімаємо заперечення перед покупкою.</p>
+
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>Підійде для великого собаки? <span class="plus">＋</span></summary>
+            <p>Так, розмір універсальний. Зручно витирати лапи, шерсть і живіт.</p>
+          </details>
+          <details class="faq__item reveal" style="--d:60ms">
+            <summary>Можна прати в машинці? <span class="plus">＋</span></summary>
+            <p>Так, 30–40°C. Без агресивних відбілювачів.</p>
+          </details>
+          <details class="faq__item reveal" style="--d:120ms">
+            <summary>Підходить для котів? <span class="plus">＋</span></summary>
+            <p>Так, особливо для лап та шерсті. М’яка тканина — без дискомфорту.</p>
+          </details>
+          <details class="faq__item reveal" style="--d:180ms">
+            <summary>Оплата та гарантія? <span class="plus">＋</span></summary>
+            <p>Оплата при отриманні. 14 днів на повернення за умови товарного вигляду.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order" class="section">
+      <div class="container">
+        <h2 class="section__title reveal">Оформіть замовлення</h2>
+        <p class="section__sub reveal" style="--d:80ms">
+          Заповніть ПІБ і телефон — заявка прийде вам у Telegram миттєво.
+        </p>
+
+        <div class="order">
+          <div class="order__left reveal">
+            <div class="orderCard">
+              <div class="orderCard__head">
+                <div>
+                  <div class="orderCard__title">Сьогодні по акції</div>
+                  <div class="orderCard__price">
+                    <span class="old">500 грн</span>
+                    <span class="new">329 грн</span>
+                  </div>
+                </div>
+                <div class="orderCard__stock">
+                  <span class="dot dot--ping"></span>
+                  <span>Залишилось <b id="stockOrder">54</b> шт</span>
+                </div>
+              </div>
+
+              <div class="orderCard__timer">
+                ⏳ До кінця акції: <b id="timerOrder">--:--:--</b>
+              </div>
+
+              <div class="orderCard__chips">
+                <span class="chip">🚚 1–3 дні</span>
+                <span class="chip">🔒 Оплата при отриманні</span>
+                <span class="chip">✅ 14 днів повернення</span>
+              </div>
+
+              <!-- Upsell -->
+              <div class="upsell">
+                <div class="upsell__title">Вигідніше: 2 шт</div>
+                <div class="upsell__row">
+                  <label class="radio">
+                    <input type="radio" name="pack" value="1" checked>
+                    <span>1 шт — <b>329 грн</b></span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="pack" value="2">
+                    <span>2 шт — <b>599 грн</b> <i>(економія)</i></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order__right reveal" style="--d:100ms">
+            <form class="form" id="leadForm" novalidate>
+              <!-- honeypot -->
+              <div class="hp">
+                <label>Company</label>
+                <input type="text" name="company" autocomplete="off" tabindex="-1">
+              </div>
+
+              <div class="field">
+                <label for="name">ПІБ</label>
+                <input id="name" name="name" type="text" placeholder="Наприклад: Іван Петренко" required minlength="2">
+              </div>
+
+              <div class="field">
+                <label for="phone">Телефон</label>
+                <input id="phone" name="phone" type="tel" placeholder="+380 (__) ___-__-__" required>
+                <small class="hint">Формат: +380 (XX) XXX-XX-XX</small>
+              </div>
+
+              <button class="btn btn--primary btn--lg btn--full" type="submit">
+                Замовити зараз
+              </button>
+
+              <div class="form__meta">
+                <span class="chip">🛡️ Дані не передаємо третім</span>
+                <span class="chip">🐾 Для собак і котів</span>
+              </div>
+
+              <div class="form__status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>© <span id="year"></span> HomeMarket • PetCare</div>
+        <div class="footer__links">
+          <a href="#order">Замовити</a>
+          <span>Політика конфіденційності</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script defer src="./js/app.js"></script>
+</body>
+</html>
