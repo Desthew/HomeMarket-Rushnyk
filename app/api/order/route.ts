@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: { name?: string; phone?: string };
+  let body: { name?: string; phone?: string; source?: string; url?: string };
   try {
     body = await request.json();
   } catch {
@@ -25,6 +25,8 @@ export async function POST(request: NextRequest) {
 
   const name = String(body.name ?? "").trim();
   const phone = String(body.phone ?? "").trim();
+  const source = String(body.source ?? "").trim();
+  const url = String(body.url ?? "").trim();
 
   if (name.length < 2) {
     return NextResponse.json(
@@ -39,23 +41,34 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const text = [
-    "🛒 **Нове замовлення**",
-    "",
-    `👤 **ПІБ:** ${name}`,
-    `📞 **Телефон:** ${phone}`,
-    "",
-    `🕐 ${new Date().toLocaleString("uk-UA")}`,
-  ].join("\n");
+  // Escape HTML for Telegram (avoid breaking tags)
+  const escape = (s: string) =>
+    s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
 
-  const url = `${TELEGRAM_API}${token}/sendMessage`;
-  const res = await fetch(url, {
+  const lines = [
+    "🛒 <b>Нове замовлення</b>",
+    "",
+    `👤 <b>ПІБ:</b> ${escape(name)}`,
+    `📞 <b>Телефон:</b> ${escape(phone)}`,
+    "",
+    "🌐 <b>Сайт:</b> " + (source ? escape(source) : "—"),
+    "📄 <b>Сторінка:</b> " + (url ? `<a href="${escape(url)}">${escape(url)}</a>` : "—"),
+    "",
+    `🕐 ${escape(new Date().toLocaleString("uk-UA"))}`,
+  ];
+  const text = lines.join("\n");
+
+  const apiUrl = `${TELEGRAM_API}${token}/sendMessage`;
+  const res = await fetch(apiUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       chat_id: chatId,
       text,
-      parse_mode: "Markdown",
+      parse_mode: "HTML",
     }),
   });
 

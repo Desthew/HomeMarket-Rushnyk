@@ -49,7 +49,12 @@ export default function OrderForm() {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: trimmedName, phone }),
+        body: JSON.stringify({
+          name: trimmedName,
+          phone,
+          source: typeof window !== "undefined" ? window.location.origin : "",
+          url: typeof window !== "undefined" ? window.location.href : "",
+        }),
       });
       const data = await res.json().catch(() => ({}));
 
