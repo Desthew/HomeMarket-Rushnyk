@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import FacebookPixel from "@/components/FacebookPixel";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="uk" className={`${inter.variable} ${manrope.variable}`}>
       <body className="font-sans">
         <FacebookPixel />
+        <ScrollToTop />
         {children}
       </body>
     </html>

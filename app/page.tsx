@@ -46,113 +46,107 @@ export default function Home() {
       </header>
 
       <main id="top">
-        {/* Hero */}
-        <section className="relative py-8">
-          <div
-            className="pointer-events-none absolute inset-x-[-20px] top-[-120px] h-[560px] opacity-100"
-            style={{
-              background: `
-                radial-gradient(circle at 70% 30%, rgba(32,201,151,.20), transparent 46%),
-                radial-gradient(circle at 20% 15%, rgba(255,122,0,.12), transparent 48%),
-                radial-gradient(circle at 50% 0%, rgba(99,102,241,.08), transparent 50%)
-              `,
-              filter: "saturate(1.15)",
-            }}
-          />
-          <div className={`${container} relative grid gap-6 md:grid-cols-[1.05fr_.95fr] md:items-center`}>
-            <div>
-              <div className="mb-3 flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-2.5 rounded-full border-0 bg-gradient-to-r from-sale to-orange px-3.5 py-2.5 font-extrabold text-white shadow-lg">
-                  🔥 Акція -34%
-                </span>
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/80 px-3.5 py-2.5 font-extrabold text-muted backdrop-blur">
-                  <span className="relative h-2.5 w-2.5 rounded-full bg-sale dot-ping" />
-                  Залишилось: <b>54</b> шт
-                </span>
-                <span className="rounded-full border border-line bg-white/80 px-3.5 py-2.5 font-extrabold text-muted">
-                  🚚 Доставка 1–3 дні
-                </span>
+        {/* Hero: спочатку картинка товару — перше, що впадає в око */}
+        <section className="relative">
+          {/* Велика картинка товару в самому верху */}
+          <div className="relative w-full overflow-hidden bg-gradient-to-b from-mint/10 to-transparent">
+            <div className="relative aspect-[4/3] w-full min-h-[280px] sm:aspect-[16/10] sm:min-h-[320px] md:aspect-[2/1] md:min-h-[380px]">
+              <Image
+                src="/assets/dog-hero.jpg"
+                alt="Рукавиця-рушник для собак і котів"
+                fill
+                className="object-cover object-center animate-floaty"
+                priority
+                sizes="100vw"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background: "radial-gradient(circle at 70% 50%, rgba(32,201,151,.15), transparent 50%)",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Під картинкою — текст, ціна, кнопки */}
+          <div className={`${container} relative pt-6 pb-8`}>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="inline-flex items-center gap-2.5 rounded-full border-0 bg-gradient-to-r from-sale to-orange px-3.5 py-2.5 font-extrabold text-white shadow-lg">
+                🔥 Акція -34%
+              </span>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/80 px-3.5 py-2.5 font-extrabold text-muted backdrop-blur">
+                <span className="relative h-2.5 w-2.5 rounded-full bg-sale dot-ping" />
+                Залишилось: <b>54</b> шт
+              </span>
+              <span className="rounded-full border border-line bg-white/80 px-3.5 py-2.5 font-extrabold text-muted">
+                🚚 Доставка 1–3 дні
+              </span>
+            </div>
+            <h1 className="font-display mt-4 text-[clamp(28px,4vw,48px)] font-extrabold leading-tight tracking-tight">
+              Висушіть улюбленця за 3 хвилини — без калюж і шерсті
+            </h1>
+            <p className="mt-3 max-w-[56ch] text-base leading-snug text-muted sm:text-lg">
+              Мікрофіброва рукавиця-рушник: м'яка, зручна, супер-вбираюча. Ідеально після прогулянки в дощ або купання.
+            </p>
+            <div className="mt-4">
+              <div className="text-xl font-black text-[#94A3B8] line-through">500 грн</div>
+              <div className="font-display text-[clamp(36px,4.5vw,56px)] font-extrabold leading-none tracking-tight text-sale">
+                329 грн
               </div>
-              <h1 className="font-display mt-2 text-[clamp(34px,4.1vw,56px)] font-extrabold leading-tight tracking-tight">
-                Висушіть улюбленця за 3 хвилини — без калюж і шерсті
-              </h1>
-              <p className="mt-3 max-w-[56ch] text-lg leading-snug text-muted">
-                Мікрофіброва рукавиця-рушник: м'яка, зручна, супер-вбираюча. Ідеально після прогулянки в дощ або купання.
-              </p>
-              <div className="mt-4">
-                <div className="text-xl font-black text-[#94A3B8] line-through">500 грн</div>
-                <div className="font-display text-[clamp(40px,5vw,64px)] font-extrabold leading-none tracking-tight text-sale">
-                  329 грн
-                </div>
-                <div className="mt-2 flex flex-wrap gap-2.5">
-                  <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
-                    ⏳ Акція обмежена
-                  </span>
-                  <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
-                    🔒 Оплата при отриманні
-                  </span>
-                  <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
-                    ✅ 14 днів повернення
-                  </span>
-                </div>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link
-                  href="#order"
-                  className="inline-flex h-14 items-center justify-center rounded-[18px] bg-mint px-6 font-black text-[#052016] shadow-mint transition hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg"
-                >
-                  Замовити зараз
-                </Link>
-                <Link
-                  href="#how"
-                  className="inline-flex h-14 items-center justify-center rounded-[18px] border border-line bg-white/80 px-6 font-black backdrop-blur transition hover:-translate-y-0.5 hover:shadow-soft2"
-                >
-                  Дивитись як працює
-                </Link>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-3 text-muted">
-                <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
-                  🏠 Чисто вдома
+              <div className="mt-2 flex flex-wrap gap-2.5">
+                <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
+                  ⏳ Акція обмежена
                 </span>
-                <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
-                  🐾 Для собак і котів
+                <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
+                  🔒 Оплата при отриманні
                 </span>
-                <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
-                  🧼 Легко прати
+                <span className="rounded-full border border-line bg-white/80 px-3 py-2.5 font-extrabold text-muted">
+                  ✅ 14 днів повернення
                 </span>
               </div>
             </div>
-            <div className="rounded-card border border-line bg-white/80 p-4 shadow-soft">
-              <div className="relative overflow-hidden rounded-[18px] border border-line">
-                <Image
-                  src="/assets/dog-hero.jpg"
-                  alt="Пес у рушнику"
-                  width={600}
-                  height={400}
-                  className="h-auto w-full animate-floaty"
-                  priority
-                />
-                <div
-                  className="pointer-events-none absolute bottom-[-60px] right-[-60px] h-[220px] w-[220px] rounded-full"
-                  style={{
-                    background: "radial-gradient(circle at 30% 30%, rgba(32,201,151,.24), transparent 60%)",
-                  }}
-                />
-              </div>
-              <div className="mt-3 grid grid-cols-2 gap-2.5">
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="#order"
+                className="inline-flex h-14 items-center justify-center rounded-[18px] bg-mint px-6 font-black text-[#052016] shadow-mint transition hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-lg"
+              >
+                Замовити зараз
+              </Link>
+              <Link
+                href="#how"
+                className="inline-flex h-14 items-center justify-center rounded-[18px] border border-line bg-white/80 px-6 font-black backdrop-blur transition hover:-translate-y-0.5 hover:shadow-soft2"
+              >
+                Дивитись як працює
+              </Link>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-3 text-muted">
+              <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
+                🏠 Чисто вдома
+              </span>
+              <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
+                🐾 Для собак і котів
+              </span>
+              <span className="rounded-xl border border-line bg-white/75 px-3 py-2.5 font-extrabold backdrop-blur">
+                🧼 Легко прати
+              </span>
+            </div>
+
+            {/* Міні-фото товару та характеристики */}
+            <div className="mt-8 rounded-card border border-line bg-white/80 p-4 shadow-soft">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <Image
                   src="/assets/product-1.jpg"
                   alt="Рукавиця-рушник"
-                  width={280}
-                  height={180}
-                  className="rounded-2xl border border-line"
+                  width={340}
+                  height={220}
+                  className="w-full rounded-2xl border border-line object-cover"
                 />
                 <Image
                   src="/assets/product-2.jpg"
                   alt="Фактура мікрофібри"
-                  width={280}
-                  height={180}
-                  className="rounded-2xl border border-line"
+                  width={340}
+                  height={220}
+                  className="w-full rounded-2xl border border-line object-cover"
                 />
               </div>
               <div className="mt-3 grid grid-cols-3 gap-2.5">
