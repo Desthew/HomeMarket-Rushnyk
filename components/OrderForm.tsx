@@ -1,30 +1,40 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import ThankYouModal from "./ThankYouModal";
 
-function maskPhone(value: string): string {
+// +38 фіксований, далі 0 + 9 цифр — маска 0XX XXX-XX-XX
+function maskPhoneSuffix(value: string): string {
   let d = value.replace(/\D/g, "");
-  if (d.startsWith("0")) d = "38" + d;
-  if (!d.startsWith("380")) d = "380" + d.replace(/^38?0?/, "");
-  d = d.slice(0, 12);
-  const p = d.padEnd(12, "_").split("");
-  return `+${p[0]}${p[1]}${p[2]} (${p[3]}${p[4]}) ${p[5]}${p[6]}${p[7]}-${p[8]}${p[9]}-${p[10]}${p[11]}`
-    .replace(/_/g, "");
+  // Якщо починається не з 0, додаємо 0
+  if (d.length > 0 && d[0] !== "0") {
+    d = "0" + d;
+  }
+  d = d.slice(0, 10); // максимум 10 цифр (0 + 9)
+  const p = d.padEnd(10, "_").split("");
+  return `${p[0]}${p[1]}${p[2]} ${p[3]}${p[4]}${p[5]}-${p[6]}${p[7]}-${p[8]}${p[9]}`.replace(/_/g, "");
 }
 
-function isValidUA(phone: string): boolean {
-  const d = phone.replace(/\D/g, "");
-  return d.length === 12 && d.startsWith("380");
+function isValidPhoneSuffix(suffix: string): boolean {
+  const d = suffix.replace(/\D/g, "");
+  return d.length === 10 && d[0] === "0";
+}
+
+function suffixToFullPhone(suffix: string): string {
+  const d = suffix.replace(/\D/g, "");
+  if (d.length !== 10 || d[0] !== "0") return "";
+  return `+38 ${d[0]}${d[1]}${d[2]} ${d[3]}${d[4]}${d[5]}-${d[6]}${d[7]}-${d[8]}${d[9]}`;
 }
 
 export default function OrderForm() {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneSuffix, setPhoneSuffix] = useState("");
   const [status, setStatus] = useState<{ message: string; ok: boolean } | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [thankYou, setThankYou] = useState<{ name: string; phone: string } | null>(null);
 
   const handlePhoneInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(maskPhone(e.target.value));
+    setPhoneSuffix(maskPhoneSuffix(e.target.value));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,9 +46,10 @@ export default function OrderForm() {
       setStatus({ message: "Вкажіть ПІБ (мінімум 2 символи).", ok: false });
       return;
     }
-    if (!isValidUA(phone)) {
+    const fullPhone = suffixToFullPhone(phoneSuffix);
+    if (!isValidPhoneSuffix(phoneSuffix)) {
       setStatus({
-        message: "Вкажіть номер у форматі +380 (XX) XXX-XX-XX",
+        message: "Вкажіть номер: 0 + 9 цифр після +38",
         ok: false,
       });
       return;
@@ -51,7 +62,7 @@ export default function OrderForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: trimmedName,
-          phone,
+          phone: fullPhone,
           source: typeof window !== "undefined" ? window.location.origin : "",
           url: typeof window !== "undefined" ? window.location.href : "",
         }),
@@ -66,8 +77,9 @@ export default function OrderForm() {
         return;
       }
 
+      setThankYou({ name: trimmedName, phone: fullPhone });
       setName("");
-      setPhone("");
+      setPhoneSuffix("");
       setStatus({
         message: "✅ Заявку відправлено! Ми зв'яжемось найближчим часом.",
         ok: true,
@@ -83,6 +95,13 @@ export default function OrderForm() {
   };
 
   return (
+    <>
+      <ThankYouModal
+        isOpen={!!thankYou}
+        onClose={() => setThankYou(null)}
+        name={thankYou?.name ?? ""}
+        phone={thankYou?.phone ?? ""}
+      />
     <form
       onSubmit={handleSubmit}
       className="rounded-card border border-line bg-white/90 p-[18px] shadow-soft"
@@ -113,17 +132,24 @@ export default function OrderForm() {
         <label htmlFor="phone" className="text-[13px] font-black text-muted">
           Телефон
         </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="+380 (__) ___-__-__"
-          value={phone}
-          onChange={handlePhoneInput}
-          required
-          className="h-[52px] rounded-2xl border border-line bg-white px-[14px] text-base outline-none transition-[box-shadow,border-color] focus:border-mint/60 focus:ring-4 focus:ring-mint/10"
-        />
-        <small className="font-bold text-muted">Формат: +380 (XX) XXX-XX-XX</small>
+        <div className="flex h-[52px] overflow-hidden rounded-2xl border border-line bg-white focus-within:ring-4 focus-within:ring-mint/10 focus-within:ring-offset-0">
+          <span className="flex items-center border-r border-line bg-bg/40 px-4 text-base font-extrabold text-muted">
+            +38
+          </span>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="numeric"
+            placeholder="0XX XXX-XX-XX"
+            value={phoneSuffix}
+            onChange={handlePhoneInput}
+            required
+            className="min-w-0 flex-1 px-4 text-base outline-none placeholder:text-muted/70"
+            aria-label="Номер телефону (0 + 9 цифр)"
+          />
+        </div>
+        <small className="font-bold text-muted">Введіть 0 + 9 цифр номера після +38</small>
       </div>
 
       <button
@@ -153,5 +179,6 @@ export default function OrderForm() {
         </div>
       )}
     </form>
+    </>
   );
 }

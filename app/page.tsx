@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import OrderForm from "@/components/OrderForm";
+import CountdownTimer from "@/components/CountdownTimer";
 
 const container = "mx-auto w-full max-w-[1200px] px-[4vw]";
 
@@ -40,7 +41,7 @@ export default function Home() {
               <span className="relative h-2.5 w-2.5 rounded-full bg-sale dot-ping" />
               На складі: <b>54</b> шт
             </span>
-            <span>⏳ До кінця акції: обмежено</span>
+            <span>⏳ До кінця акції: <b><CountdownTimer /></b></span>
           </div>
         </div>
       </header>
@@ -363,7 +364,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mt-2.5 rounded-2xl border border-line bg-white/80 py-3 px-3.5 font-extrabold text-muted">
-                  ⏳ До кінця акції: обмежено
+                  ⏳ До кінця акції: <b><CountdownTimer /></b>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2.5">
                   <span className="rounded-full border border-line bg-white/80 px-3 py-2 font-extrabold text-muted">
